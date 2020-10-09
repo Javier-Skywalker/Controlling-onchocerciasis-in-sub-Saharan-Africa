@@ -1,0 +1,163 @@
+<!DOCTYPE html> 
+<html> 
+<!-- The following code has been developed by students and/or researchers of the Freshman Research Initiative DIY Diagnostics Stream at The University of Texas at Austin.  This code is shared for demonstration purposes and should not be considered a product -- it is for entertainment purposes only.  Any user of this code does so at their own risk. Members of the DIY Stream, FRI, and The University of Texas system are not liable for anything related to this code.
+ 
+THIS CODE SHOULD NOT BE USED TO DIAGNOSE ANY KIND OF MEDICAL CONDITION.
+ 
+ 
+Authors in chronological order of contribution:
+Tim Riedel
+Javier Sigala
+ 
+Further Information:
+http://cns.utexas.edu/fri
+ 
+Research Educator:
+Timothy Riedel
+triedel@utexas.edu
+ 
+Brief Description of Goal of Code:
+The goal was to quantify the results to see whether the person had a cold or allergy (do not use for real diagnostics). 
+ 
+Known Issues:
+I did not create another page that revealed the results for this program. I made a pop-up for the results. 
+-->
+
+   <head> 
+	   ><!-- Changed the links because they were outdated --> 
+     
+      <title>Cold or Allergies</title>  
+      <meta name="viewport" content="width=device-width, initial-scale=1">
+      <meta name="apple-mobile-web-app-capable" content="yes">
+      <link rel="stylesheet" href="https://code.jquery.com/mobile/1.4.5/jquery.mobile-1.4.5.min.css">
+      <script src="https://code.jquery.com/jquery-1.11.3.min.js"></script>
+      <script src="https://code.jquery.com/mobile/1.4.5/jquery.mobile-1.4.5.min.js"></script>
+    	 <script>
+		 
+                // Allergy and cold count are set to zero from the start. 
+		var allergy_count = 0;
+		var cold_count = 0;
+		var allergyPercent = 0;
+		var coldPercent = 0;
+		//Function for every time you press allergy or cold button it adds one to its respective call count. 
+		function allergyAdd(){
+		allergy_count = allergy_count + 1;
+		}
+		
+		function coldAdd(){
+  		cold_count = cold_count	+ 1;								
+		}
+		 // Function that quantifies the results of both allergy and cold count.
+		 // Function also makes a percentage of the results in a pop up.
+		function results() {
+		allergyPercent = (allergy_count / (allergy_count + cold_count)) * 100;
+		coldPercent = (cold_count / (allergy_count + cold_count)) * 100;
+		alert("Probability it is allergies = " + allergyPercent	+ "%" +	
+		      "\nProbability it is a cold =" + coldPercent + "%");
+		}
+		 // This function restarts again to zero (for both allergy and cold count) if you press the home button.
+		 function res() {
+		 allergy_count = 0;
+		 cold_count = 0;
+		 }
+	 </script>
+	
+   </head> 
+   
+   <body> 
+	   ><!--Page is asking question 1 (with "yes" or "no" buttons and a "home button" to go back. Onclick added for the summation of answers.--> 
+
+  <div data-role="page" id="pageone">
+   <div data-role="header">
+       <h1> Question 1 </h1>
+   </div><!-- /header -->
+   
+   <div data-role="Main" class = "ui-content">
+	   <style>
+	   p{ color:black; text-align:center;}
+	   </style>
+      <p> Are your eyes watery or itchy? </p>
+         <a href="#pagetwo"	onclick="allergyAdd();" class="ui-btn">Yes</a>
+          <a href="#pagetwo" 	onclick="coldAdd();"	  class="ui-btn">No</a>
+   </div><!-- /content -->
+   
+   <div data-role="footer" data-position="fixed">
+      <p>Menu</p>
+          <a href="#pageone" onclick="res();" class="ui-btn">Home</a>
+       </div><!-- /footer -->
+        </div><!-- /page -->
+   
+   
+   <div data-role = "page" id = "pagetwo">
+    <div data-role = header>
+	    <style>
+	   p{ color:black; text-align:center;}
+	   </style>
+              <h1> Question 2 </h1>
+      </div><!-- /header -->
+    <div data-role="main" class = "ui-content">
+        <p> Do you have a fever? </p>
+         <a href="#pagethree" 	onclick="coldAdd();"class="ui-btn">Yes</a>
+          <a href="#pagethree" 	onclick="allergyAdd();"class="ui-btn">No</a>
+         </div><!-- /content -->
+         <div data-role= "footer" data-position="fixed">
+          <p>Menu </p>
+           <a href="#pageone" onclick="res();" class="ui-btn">Home</a>
+          </div><!-- /footer -->
+        </div><!-- /page -->
+    
+    <div data-role = "page" id = "pagethree">
+    <div data-role = header>
+	    <style>
+	   p{ color:black; text-align:center;}
+	   </style>
+              <h1> Question 3 </h1>
+      </div><!-- /header -->
+    <div data-role="main" class = "ui-content">
+        <p> Do you have a sore throat? </p>
+         <a href="#pagefour" 	onclick="coldAdd();"	 class="ui-btn">Yes</a>
+          <a href="#pagefour" 	onclick="allergyAdd();"	 class="ui-btn">No</a>
+         </div><!-- /content -->
+         <div data-role= "footer" data-position="fixed">
+          <p>Menu </p>
+           <a href="#pageone" onclick="res();" class="ui-btn">Home</a>
+          </div><!-- /footer -->
+        </div><!-- /page -->
+    
+    <div data-role = "page" id = "pagefour">
+    <div data-role = header>
+	    <style>
+	   p{ color:black; text-align:center;}
+	   </style>
+              <h1> Question 4 </h1>
+      </div><!-- /header -->
+    <div data-role="main" class = "ui-content">
+        <p>  Are your symptoms seasonal	or chronic? </p>
+         <a href="#pagefive" 	onclick="allergyAdd();"class="ui-btn">Yes</a>
+          <a href="#pagefive" 	onclick="coldAdd();"	 class="ui-btn">No</a>
+         </div><!-- /content -->
+         <div data-role= "footer" data-position="fixed">
+          <p>Menu </p>
+           <a href="#pageone" onclick="res();" class="ui-btn">Home</a>
+          </div><!-- /footer -->
+        </div><!-- /page -->
+    
+    ><!-- Created an onclick to calculate my results and it will come up as a pop-up --> 
+
+    <div data-role = "page" id = "pagefive">
+    <div data-role = header>
+           <h1> Calculating Results </h1>
+      </div><!-- /header -->
+    <div data-role="main" class = "ui-content">
+        <p>  Check out your results by clicking this button! </p>
+         <a onclick="results()" class="ui-btn">Results</a>
+         </div><!-- /content -->
+         <div data-role= "footer" data-position="fixed">
+          <p>Menu </p>
+           <a href="#pageone" onclick="res();" class="ui-btn">Home</a>
+          </div><!-- /footer -->
+        </div><!-- /page -->
+    
+
+ </body>
+</html>
